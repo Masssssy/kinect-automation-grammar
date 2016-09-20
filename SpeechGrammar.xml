@@ -2,15 +2,19 @@
 <grammar version="1.0" xml:lang="en-US" mode="voice" root="toplevel"
 xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
 
-<!--ACTIONS-->
-  
+
   <rule id="toplevel" scope="public">
-    <one-of>
+    <item repeat="1">Jarvis</item>
+    <ruleref uri="#actions"/>
+  </rule>
+<!--ACTIONS-->
+  <rule id="actions" scope="public">
+     <one-of>
       <item>
-        <ruleref uri="#Enable"/>
+        <ruleref uri="#On"/>
       </item>
       <item>
-        <ruleref uri="#Disable"/>
+        <ruleref uri="#Off"/>
       </item>
       <item>
         <ruleref uri="#Dim"/>
@@ -19,13 +23,13 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
         <ruleref uri="#Whatis"/>
       </item>
     </one-of>
-  </rule>
+   </rule>
 
 <!--#########################################-->
 
 <!--ACTION DEFINITIONS-->
-  <rule id="Enable">
-    <tag>out.Action = "enable"</tag>
+  <rule id="On">
+    <tag>out.Action = "ON"</tag>
     <one-of>
       <item>turn on</item>
       <item>enable</item>
@@ -34,8 +38,8 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
     <tag> out.device = rules.Devices; </tag>
   </rule>
 
-  <rule id="Disable">
-    <tag>out.Action = "disable"</tag>
+  <rule id="Off">
+    <tag>out.Action = "OFF"</tag>
     <one-of>
       <item> turn off</item>
       <item> disable</item>
@@ -45,7 +49,7 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
   </rule>
 
   <rule id="Dim">
-    <tag>out.Action = "dim"</tag>
+    <tag>out.Action = "Dim"</tag>
     <one-of>
       <item>dim</item>
       <item>set brightness</item>
@@ -57,7 +61,7 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
     <tag>out.percentValue = rules.PercentValues</tag>
   </rule>
 
-  <rule id="whatis">
+  <rule id="Whatis">
     <tag>out.Action = "Whatis"</tag>
     <one-of>
       <item>What is</item>
