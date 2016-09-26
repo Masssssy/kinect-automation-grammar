@@ -20,9 +20,12 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
         <ruleref uri="#Dim"/>
       </item>
       <item>
-        <ruleref uri="#Whatis"/>
+        <ruleref uri="#Question"/>
       </item>
-    </one-of>
+       <item>
+         <ruleref uri="#Oneliner"/>
+       </item>
+     </one-of>
    </rule>
 
 <!--#########################################-->
@@ -49,7 +52,7 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
   </rule>
 
   <rule id="Dim">
-    <tag>out.Action = "Dim"</tag>
+    <tag>out.Action = "DIM"</tag>
     <one-of>
       <item>dim</item>
       <item>set brightness</item>
@@ -61,14 +64,20 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
     <tag>out.percentValue = rules.PercentValues</tag>
   </rule>
 
-  <rule id="Whatis">
-    <tag>out.Action = "Whatis"</tag>
+  <rule id="Question">
+    <tag>out.Action = "QUESTION"</tag>
     <one-of>
       <item>What is</item>
       <item>What's</item>
     </one-of>
-    <ruleref uri="#WhatIsActions"/>
-    <tag> out.whatIsAction = rules.WhatIsActions; </tag>
+    <ruleref uri="#QuestionActions"/>
+    <tag> out.questionAction = rules.QuestionActions; </tag>
+  </rule>
+  
+  <rule id="Oneliner">
+    <tag>out.Action = "ONELINER"</tag>
+    <ruleref uri="#Oneliners"/>
+    <tag> out.oneLinerAction= rules.Oneliners; </tag>
   </rule>
 
   <!--END ACTION DEFINITIONS-->
@@ -94,31 +103,40 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
 
   <rule id="DimDevices">
     <one-of>
-      <item>Main light</item>
+      <item>Main light<tag>out="main_light";</tag></item>
     </one-of>
   </rule>
 
   <rule id="PercentValues">
     <one-of>
-      <item>ten percent</item>
-      <item>twenty percent</item>
-      <item>thirty percent</item>
-      <item>fourty percent</item>
-      <item>fifty percent</item>
-      <item>sixty percent</item>
-      <item>seventy percent</item>
-      <item>eighty percent</item>
-      <item>ninety percent</item>
-      <item>a hundred percent</item>
+      <item>ten percent<tag>out="10"</tag></item>
+      <item>twenty percent<tag>out="20"</tag></item>
+      <item>thirty percent<tag>out="30"</tag></item>
+      <item>fourty percent<tag>out="40"</tag></item>
+      <item>fifty percent<tag>out="50"</tag></item>
+      <item>sixty percent<tag>out="60"</tag></item>
+      <item>seventy percent<tag>out="70"</tag></item>
+      <item>eighty percent<tag>out="80"</tag></item>
+      <item>ninety percent<tag>out="90"</tag></item>
+      <item>a hundred percent<tag>out="100"</tag></item>
     </one-of>
   </rule>
 
-  <rule id="WhatIsActions">
+  <rule id="QuestionActions">
     <one-of>
-      <item>the time</item>
-      <item>the temperature</item>
+      <item>the time<tag>out="TIME"</tag></item>
+      <item>the temperature<tag>out="TEMP"</tag></item>
     </one-of>
   </rule>
+
+  <rule id="Oneliners">
+    <one-of>
+      <item>
+        thank you<tag>out="THANKS"</tag>
+      </item>
+    </one-of>
+  </rule>
+
 
   <rule id="Colors">
     <one-of>
